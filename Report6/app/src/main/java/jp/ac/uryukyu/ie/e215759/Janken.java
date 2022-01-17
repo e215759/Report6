@@ -3,45 +3,58 @@ package jp.ac.uryukyu.ie.e215759;
 import java.rmi.Naming;
 import java.util.Scanner;
 
+/**
+ * このクラスはプレイヤーとロボットがジャンケンをするために作ったクラス。
+ * 基本的に必要なメソッドはここのクラスに記述されている。
+ */
 public class Janken {
-    String robottoOfJanken;
-    String playerOfJanken;
-    String result;
-
-    public static String start() {
+    /**
+     * このメソッドは最初に実行されるメソッドで、ロボットと自己紹介する。
+     */
+    public static void start() {
         System.out.println("ロボット「僕はジャンケンロボット！君の名前を教えて！」");
         String PlayerName = new java.util.Scanner(System.in).nextLine();
         System.out.println("ロボット「よろしくね！" + PlayerName + "さん！」");
-        return PlayerName;
     }
 
-    public static String jankenOfJanken() {
+    /**
+     * このメソッドはロボット側がジャンケンで何出すのかを決めるメソッド。
+     * @return jankenOfRobotto ロボットがジャンケンで出す手。
+     */
+    public static String jankenOfRobotto() {
         String[] kindOfJanken = {"グー", "チョキ", "パー"};
         int num = new java.util.Random().nextInt(3);
-        String robottoOfJanken = kindOfJanken[num];
-        return robottoOfJanken;
+        String jankenOfRobotto = kindOfJanken[num];
+        return jankenOfRobotto;
     }
 
-    public static String playerOfJanken() {
+    /**
+     * このメソッドはプレイヤー側がジャンケンで何出すのかを決めるメソッド。
+     * @return jankenOfPlayer プレイヤーがジャンケンで出す手。
+     */
+    public static String jankenOfPlayer() {
         System.out.println("ロボット「それでは勝負だ！最初はグー！ジャンケン...」");
         String[] kindOfJanken = {"グー", "チョキ", "パー"};
         System.out.println("何を出しますか？ \n1:グー \n2:チョキ \n3:パー");
         int imput = new java.util.Scanner(System.in).nextInt();
-        String playerOfJanken = kindOfJanken[imput - 1];
-        return playerOfJanken;
+        String jankenOfPlayer = kindOfJanken[imput - 1];
+        return jankenOfPlayer;
     }
 
+    /**
+     * このメソッドが実際にジャンケンをして結果を出力してくれるメソッド。
+     */
     public static void match() {
         String result;
-        String robottoOfJanken = jankenOfJanken();
-        String playerOfJanken = playerOfJanken();
-        System.out.println("ロボット「ポン！！！」 \nロボット：" +robottoOfJanken + "\nあなた：" + playerOfJanken);
-        switch (robottoOfJanken) {
+        String jankenOfRobotto = jankenOfRobotto();
+        String jankenOfPlayer = jankenOfPlayer();
+        System.out.println("ロボット「ポン！！！」 \nロボット：" + jankenOfRobotto + "\nあなた：" + jankenOfPlayer);
+        switch (jankenOfRobotto) {
             case "グー":
-                if (playerOfJanken == "グー") {
+                if (jankenOfPlayer == "グー") {
                     System.out.println("あいこです！");
                     result = "あいこ";
-                } else if (playerOfJanken == "チョキ"){
+                } else if (jankenOfPlayer == "チョキ"){
                     System.out.println("あなたの負けです！");
                     result = "負け";
                 } else {
@@ -50,10 +63,10 @@ public class Janken {
                 }
                 break;
             case "チョキ":
-                if (playerOfJanken == "グー") {
+                if (jankenOfPlayer == "グー") {
                     System.out.println("あなたの勝ちです！");
                     result = "勝ち";
-                } else if (playerOfJanken == "チョキ"){
+                } else if (jankenOfPlayer == "チョキ"){
                     System.out.println("あいこです！");
                     result = "あいこ";
                 } else {
@@ -62,10 +75,10 @@ public class Janken {
                 }
                 break;
             case "パー":
-                if (playerOfJanken == "グー") {
+                if (jankenOfPlayer == "グー") {
                     System.out.println("あなたの負けです！");
                     result = "負け";
-                } else if (playerOfJanken == "チョキ"){
+                } else if (jankenOfPlayer == "チョキ"){
                     System.out.println("あなたの勝ちです！");
                     result = "勝ち";
                 } else {

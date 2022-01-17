@@ -1,6 +1,11 @@
 package jp.ac.uryukyu.ie.e215759;
 
 public class Main {
+    /**
+     * このメソッドは基本的にJanken.classのメソッドを呼び出すメソッド。
+     * 繰り返しジャンケンをするかどうかを判断するのもこのメソッドに追加した。
+     * @param args
+     */
     public static void main(String[] args) {
         var janken = new Janken();
         janken.start();
